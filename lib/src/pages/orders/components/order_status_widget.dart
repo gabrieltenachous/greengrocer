@@ -46,22 +46,22 @@ class OrderStatusWidget extends StatelessWidget {
           ),
         ] else ...[
           _StatusDot(
-            isActive: false,
+            isActive: currentStatus >= 2,
             title: 'Pagamento',
           ), 
           const _CustomDivider(),
           _StatusDot(
-            isActive: false,
+            isActive: currentStatus >= 3,
             title: 'Preparando',
           ), 
           const _CustomDivider(),
           _StatusDot(
-            isActive: false,
+            isActive: currentStatus >= 4,
             title: 'Envio',
           ), 
           const _CustomDivider(),
           _StatusDot(
-            isActive: false,
+            isActive: currentStatus >= 5,
             title: 'Entregue',
           ),
 

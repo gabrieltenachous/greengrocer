@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/models/cart_item_model.dart';
 import 'package:greengrocer/src/pages/cart/components/cart_tile.dart';
+import 'package:greengrocer/src/pages/widgets/payment_dialog.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 import 'package:greengrocer/src/config/app_data.dart' as appData;
 
@@ -16,9 +17,11 @@ class _CartTabState extends State<CartTab> {
   final UtilsServices utilsServices = UtilsServices();
 
   void removeItemFromCart(CartItemModel cartItem) {
-    setState(() {
-      appData.cartItems.remove(cartItem);
-    });
+    setState(
+      () {
+        appData.cartItems.remove(cartItem);
+      },
+    );
   }
 
   double cartTotalPrice() {
@@ -90,7 +93,11 @@ class _CartTabState extends State<CartTab> {
                     ),
                     onPressed: () async {
                       bool? result = await showOrderConfirmation();
-                      print(result);
+                      if(result ?? false){
+                        showDialog(context: context, builder: (_){
+                          return PaymentDialog(order: appData.orders.first);
+                        });
+                      } 
                     },
                     child: const Text(
                       'Concluir pedido',
@@ -131,12 +138,11 @@ class _CartTabState extends State<CartTab> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                )
-              ),
+                  shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              )),
               onPressed: () {
-                Navigator.of(context).pop(true); 
+                Navigator.of(context).pop(true);
               },
               child: const Text('Sim'),
             ),
