@@ -20,6 +20,8 @@ class _CartTabState extends State<CartTab> {
     setState(
       () {
         appData.cartItems.remove(cartItem);
+        utilsServices.showToast(
+            message: '${cartItem.item.itemName} removido do carrinho');
       },
     );
   }
@@ -45,8 +47,9 @@ class _CartTabState extends State<CartTab> {
               itemCount: appData.cartItems.length,
               itemBuilder: (_, index) {
                 return CartTile(
-                    cartItem: appData.cartItems[index],
-                    remove: removeItemFromCart);
+                  cartItem: appData.cartItems[index],
+                  remove: removeItemFromCart,
+                );
               },
             ),
           ),
@@ -93,11 +96,16 @@ class _CartTabState extends State<CartTab> {
                     ),
                     onPressed: () async {
                       bool? result = await showOrderConfirmation();
-                      if(result ?? false){
-                        showDialog(context: context, builder: (_){
-                          return PaymentDialog(order: appData.orders.first);
-                        });
-                      } 
+                      if (result ?? false) {
+                        showDialog(
+                          context: context,
+                          builder: (_) {
+                            return PaymentDialog(order: appData.orders.first);
+                          },
+                        );
+                      }else{
+                        utilsServices.showToast(message: 'Pedido não confirmado',isError: true);
+                      }
                     },
                     child: const Text(
                       'Concluir pedido',
