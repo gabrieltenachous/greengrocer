@@ -5,7 +5,7 @@ import 'package:greengrocer/src/pages/widgets/quantity_widgets.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
 
 class ProductScreen extends StatefulWidget {
-  ProductScreen({
+  const ProductScreen({
     super.key,
     required this.item,
   });
@@ -68,14 +68,13 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                           ),
                           QuantityWidget(
-                            suffixText: widget.item.unit,
-                            value: cartItemQuantity,
-                            result: (int quantity){
-                              setState(() {
-                                cartItemQuantity = quantity;
-                              });
-                            }
-                          )
+                              suffixText: widget.item.unit,
+                              value: cartItemQuantity,
+                              result: (int quantity) {
+                                setState(() {
+                                  cartItemQuantity = quantity;
+                                });
+                              })
                         ],
                       ),
                       //PRECO
