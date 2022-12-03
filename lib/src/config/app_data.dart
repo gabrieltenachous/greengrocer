@@ -120,7 +120,6 @@ List<OrderModel> orders = [
         item: mango,
         quantity: 2,
       ),
-      
     ],
   ),
 
