@@ -12,7 +12,7 @@ class OrderTile extends StatelessWidget {
     super.key,
     required this.order,
   });
-  final UtilsServices utilsServices = new UtilsServices();
+  final UtilsServices utilsServices = UtilsServices();
 
   @override
   Widget build(BuildContext context) {
