@@ -31,11 +31,11 @@ class CategoryTile extends StatelessWidget {
           child: Text(
             category,
             style: TextStyle(
-                color: isSelected
-                    ? Colors.white
-                    : CustomColors.customContrastColor,
-                fontWeight: FontWeight.bold,
-                fontSize: isSelected ? 16 : 14),
+              color:
+                  isSelected ? Colors.white : CustomColors.customContrastColor,
+              fontWeight: FontWeight.bold,
+              fontSize: isSelected ? 16 : 14,
+            ),
           ),
         ),
       ),

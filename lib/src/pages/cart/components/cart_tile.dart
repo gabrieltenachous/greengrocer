@@ -7,7 +7,11 @@ import 'package:greengrocer/src/services/utils_services.dart';
 class CartTile extends StatefulWidget {
   final CartItemModel cartItem;
   final Function(CartItemModel) remove;
-  const CartTile({super.key, required this.cartItem, required this.remove});
+  const CartTile({
+    super.key,
+    required this.cartItem,
+    required this.remove,
+  });
 
   @override
   State<CartTile> createState() => _CartTileState();

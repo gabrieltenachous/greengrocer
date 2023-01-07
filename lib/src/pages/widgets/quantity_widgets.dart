@@ -13,6 +13,7 @@ class QuantityWidget extends StatelessWidget {
   final String suffixText;
   final Function(int quantity) result;
   final bool isRemovable;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,21 +33,22 @@ class QuantityWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _QuantityButton(
-            icon: !isRemovable || value > 1 ? Icons.remove : Icons.delete_forever,
+            icon:
+                !isRemovable || value > 1 ? Icons.remove : Icons.delete_forever,
             color: !isRemovable || value > 1 ? Colors.grey : Colors.red,
-            onPressed: () {
-              if(value == 1 && !isRemovable) return;
+            onPressed: () async {
+              if (value == 1 && !isRemovable) return;
               int resultCount = value - 1;
               result(resultCount);
             },
           ),
           Padding(
-            padding:const EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 6,
             ),
             child: Text(
               '$value$suffixText',
-              style:const TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
